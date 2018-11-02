@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {browseItemsLoad, browseItemsLoadCancel} from './services/actions';
 import Button from '@material-ui/core/Button';
 import CenteredGrid from "../../components/ItemGrid/ItemGrid";
+import * as actions from './services/actions';
 
 
 class BrowseItemsScene extends Component {
@@ -19,27 +20,28 @@ class BrowseItemsScene extends Component {
         this.props.onLoad();
     };
 
+    handleChange = () => {
+        let current = this.props.query;
+        let totalItems = this.props.items ? this.props.items.totalItems : null;
+        this.props.onQueryChange(totalItems > current + 9 ? current + 9 : current);
+    };
+
     render() {
         const {items, loading, error} = this.props;
 
         return (
             <div>
                 <h1>Browse page</h1>
-                <Button variant="contained"
-                        color="primary"
-                        onClick={this.handleBrowseItemsLoad}>
-                    Load
-                </Button>
-                <hr/>
 
                 {loading ? <div>Loading</div> : null}
                 {error ? <div>Error</div> : null}
                 {items ? <CenteredGrid items={items.items}/> : 'Nothing to load'}
-                {
-                    <div>
-                        <pre>{JSON.stringify(items, null, 2)}</pre>
-                    </div>
-                }
+                <Button variant="contained"
+                        color="primary"
+                        onClick={this.handleChange}>
+                    Load More
+                </Button>
+
             </div>
         );
     }
@@ -47,8 +49,9 @@ class BrowseItemsScene extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const {items, loading, error} = state.browseItems;
+    const {query, items, loading, error} = state.browseItems;
     return {
+        query,
         items,
         loading,
         error
@@ -58,7 +61,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onLoad: () => dispatch(browseItemsLoad()),
-        onCancel: () => dispatch(browseItemsLoadCancel())
+        onCancel: () => dispatch(browseItemsLoadCancel()),
+        onQueryChange: (query) => dispatch(actions.browseItemsQueryChange(query))
     }
 };
 

@@ -2,12 +2,20 @@ import * as actions from './actions';
 
 const defaultState = {
     items: null,
+    query: 0,
     loading: false,
     error: null
 };
 
 export const reducer = (state = defaultState, action) => {
     switch(action.type) {
+        case actions.BROWSE_ITEMS_QUERY_CHANGE: {
+            return {
+                ...state,
+                query: action.payload.query
+            };
+        }
+
         case actions.BROWSE_ITEMS_LOAD: {
             return {
                 ...state,
