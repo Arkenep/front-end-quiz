@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {browseItemsLoad, browseItemsLoadCancel} from './services/actions';
 import Button from '@material-ui/core/Button';
+import CenteredGrid from "../../components/ItemGrid/ItemGrid";
 
 
 class BrowseItemsScene extends Component {
@@ -23,21 +24,22 @@ class BrowseItemsScene extends Component {
 
         return (
             <div>
-                <h1>Browse items</h1>
+                <h1>Browse page</h1>
                 <Button variant="contained"
                         color="primary"
                         onClick={this.handleBrowseItemsLoad}>
                     Load
                 </Button>
-
                 <hr/>
 
-                {loading? <div>Loading</div> : null}
-                {error? <div>Error</div> : null}
+                {loading ? <div>Loading</div> : null}
+                {error ? <div>Error</div> : null}
+                {items ? <CenteredGrid items={items.items}/> : 'Nothing to load'}
                 {
-                    <div><pre>{JSON.stringify(items, null, 2)}</pre></div>
+                    <div>
+                        <pre>{JSON.stringify(items, null, 2)}</pre>
+                    </div>
                 }
-
             </div>
         );
     }
@@ -45,7 +47,7 @@ class BrowseItemsScene extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { items, loading, error } = state.browseItems;
+    const {items, loading, error} = state.browseItems;
     return {
         items,
         loading,
