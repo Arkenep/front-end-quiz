@@ -22,7 +22,7 @@ class BrowseItemsScene extends Component {
 
         return (
             <div>
-                <h1>Random GIF</h1>
+                <h1>Browse items</h1>
 
                 <button
                     onClick={this.handleBrowseItemsLoad}>
