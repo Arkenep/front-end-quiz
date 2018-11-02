@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {browseItemsLoad, browseItemsLoadCancel} from './services/actions';
+import Button from '@material-ui/core/Button';
 
 
 class BrowseItemsScene extends Component {
@@ -23,11 +24,11 @@ class BrowseItemsScene extends Component {
         return (
             <div>
                 <h1>Browse items</h1>
-
-                <button
-                    onClick={this.handleBrowseItemsLoad}>
+                <Button variant="contained"
+                        color="primary"
+                        onClick={this.handleBrowseItemsLoad}>
                     Load
-                </button>
+                </Button>
 
                 <hr/>
 

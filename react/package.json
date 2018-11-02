@@ -28,6 +28,8 @@
     },
     "homepage": "https://github.com/1stdibs/front-end-quiz#readme",
     "dependencies": {
+        "@material-ui/core": "^3.3.2",
+        "@material-ui/icons": "^3.0.1",
         "express": "^4.16.3",
         "history": "^4.7.2",
         "react": "^16.3.2",
