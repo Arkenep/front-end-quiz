@@ -22,12 +22,9 @@ class ItemDetailsScene extends Component {
 
         return (
             <div>
-                <h1>Item title</h1>
-
                 {loading ? <div>Loading</div> : null}
                 {error ? <div>Error</div> : null}
-                {<div><pre>{JSON.stringify(this.props, null, 2)}</pre></div>}
-
+                {item ? <h3>{item.title}</h3> : 'Nothing to Load'}
             </div>
         );
     }

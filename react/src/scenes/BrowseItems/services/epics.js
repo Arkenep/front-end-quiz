@@ -4,7 +4,6 @@ import {switchMap, map, catchError, takeUntil} from 'rxjs/operators';
 import * as qs from 'qs';
 import * as actions from './actions';
 import {ajax} from 'rxjs/ajax';
-import {BROWSE_ITEMS_QUERY_CHANGE} from "./actions";
 
 const URL = 'http://localhost:3001/browse';
 
