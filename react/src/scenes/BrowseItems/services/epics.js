@@ -11,7 +11,6 @@ const URL = 'http://localhost:3001/browse';
 const browseItemsLoad = (action$) =>
     action$.ofType(actions.BROWSE_ITEMS_QUERY_CHANGE).pipe(
         switchMap((action) => {
-            console.log(action);
             const params = qs.stringify({
                 start: action.payload.query
             });
@@ -21,8 +20,7 @@ const browseItemsLoad = (action$) =>
                 method: 'GET',
                 contentType: "application/json;charset=utf-8",
             }).pipe(
-                map(({response, stuff}) => {
-                    console.log(response, stuff);
+                map(({response}) => {
                     return actions.browseItemsLoadSuccess(response);
                 }),
                 catchError(() => {

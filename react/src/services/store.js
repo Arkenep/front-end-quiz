@@ -2,8 +2,10 @@ import {routerMiddleware, routerReducer} from "react-router-redux";
 import {applyMiddleware, compose, createStore} from "redux";
 import combineReducers from "redux/src/combineReducers";
 import {reducer as browseItemsReducer} from '../scenes/BrowseItems/services/reducer';
+import {reducer as itemReducer} from '../scenes/ItemDetails/services/reducer';
 import {createEpicMiddleware, combineEpics} from 'redux-observable';
 import browseItemsEpic from '../scenes/BrowseItems/services/epics';
+import itemEpic from '../scenes/ItemDetails/services/epics';
 
 export const createAppStore = (history) => {
     const routerHistoryMiddleware = routerMiddleware(history);
@@ -11,7 +13,8 @@ export const createAppStore = (history) => {
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
     const rootEpic = combineEpics(
-        browseItemsEpic
+        browseItemsEpic,
+        itemEpic
     );
 
     const epicMiddleware = createEpicMiddleware(rootEpic);
@@ -20,7 +23,8 @@ export const createAppStore = (history) => {
 
         combineReducers({
             router: routerReducer,
-            browseItems: browseItemsReducer
+            browseItems: browseItemsReducer,
+            item: itemReducer
         }),
         composeEnhancers(
             applyMiddleware(
