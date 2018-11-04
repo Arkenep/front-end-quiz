@@ -1,5 +1,6 @@
 import React from 'react';
 import {withRouter} from "react-router-dom";
+import Button from "@material-ui/core/Button/Button";
 
 const NavItem = withRouter(({match, location, history, to, children}) => {
     const onClick = () => {
@@ -7,9 +8,12 @@ const NavItem = withRouter(({match, location, history, to, children}) => {
     };
     const isActive = location.pathname === to;
     return (
-        <button
-            className={isActive ? 'active' : null}
-            onClick={onClick}>{children}</button>
+        <Button variant="contained"
+                color="primary"
+                className={isActive ? 'active' : null}
+                onClick={onClick}>{children}
+        </Button>
+
     );
 });
 

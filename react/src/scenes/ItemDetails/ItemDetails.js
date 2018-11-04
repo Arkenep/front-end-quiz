@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {itemLoad, itemLoadCancel} from './services/actions';
+import NavItem from "../../components/NavItem/NavItem";
 
 
 class ItemDetailsScene extends Component {
@@ -24,6 +25,7 @@ class ItemDetailsScene extends Component {
             <div>
                 {loading ? <div>Loading</div> : null}
                 {error ? <div>Error</div> : null}
+                {<NavItem to={'/'}>Home</NavItem>}
                 {item ? <h3>{item.title}</h3> : 'Nothing to Load'}
             </div>
         );

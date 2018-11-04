@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {browseItemsLoad, browseItemsLoadCancel} from './services/actions';
 import Button from '@material-ui/core/Button';
-import CenteredGrid from "../../components/ItemGrid/ItemGrid";
+import BrowseGrid from "../../components/GridComponent/GridComponent";
 import * as actions from './services/actions';
 
 
@@ -35,7 +35,7 @@ class BrowseItemsScene extends Component {
 
                 {loading ? <div>Loading</div> : null}
                 {error ? <div>Error</div> : null}
-                {items ? <CenteredGrid items={items.items}/> : 'Nothing to load'}
+                {items ? <BrowseGrid items={items.items}/> : 'Nothing to load'}
                 <Button variant="contained"
                         color="primary"
                         onClick={this.handleChange}>

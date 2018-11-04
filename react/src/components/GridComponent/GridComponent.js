@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import RecipeReviewCard from "../Item/item";
+import GridItem from "../GridItem/GridItem";
 
 const styles = theme => ({
     root: {
@@ -16,7 +16,7 @@ const styles = theme => ({
     },
 });
 
-class CenteredGrid extends React.Component {
+class BrowseGrid extends React.Component {
     render() {
         const {classes, items} = this.props;
 
@@ -27,7 +27,7 @@ class CenteredGrid extends React.Component {
                         return (
                             <Grid key={index} item xs={4}>
                                 <Paper className={classes.paper}>
-                                    <RecipeReviewCard item={item}/>
+                                    <GridItem item={item}/>
                                 </Paper>
                             </Grid>
                         )
@@ -38,8 +38,8 @@ class CenteredGrid extends React.Component {
     }
 }
 
-CenteredGrid.propTypes = {
+BrowseGrid.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CenteredGrid);
+export default withStyles(styles)(BrowseGrid);

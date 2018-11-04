@@ -4,7 +4,6 @@ import { ConnectedRouter } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory';
 import BrowseItemsScene from './scenes/BrowseItems/BrowseItems'
 import ItemDetailsScene from './scenes/ItemDetails/ItemDetails'
-import NavItem from "./components/NavItem/NavItem";
 import {Provider} from "react-redux";
 import {createAppStore} from './services/store';
 import './App.css';
@@ -20,16 +19,10 @@ class App extends Component {
                 <Provider store={store}>
                     <ConnectedRouter history={history}>
                         <Fragment>
-                            <ol>
-                                <li><NavItem to={'/browse'}>Browse</NavItem></li>
-                                <li><NavItem to={'/item'}>Item</NavItem></li>
-                            </ol>
-
                             <Switch>
                                 <Route exact path="/" component={BrowseItemsScene}/>
                                 <Route path={'/browse'} component={BrowseItemsScene}/>
                                 <Route path={'/item'} component={ItemDetailsScene}/>
-
                                 <Redirect to={'/'}/>
                             </Switch>
                         </Fragment>
