@@ -11,10 +11,8 @@ const getItem = function (itemId, userId) {
     const item = cachedItems.find((item) => {
         return item.id === itemId || item.integerId === itemId;
     }) || {};
-    return {
-        item,
-        isFavorite: favoritesArr.some(itemId => item.id === itemId)
-    };
+    item.isFavorite = favoritesArr.some(itemId => item.id === itemId);
+    return item;
 };
 
 itemRouter.get('/:id/:userId', (req, res) => {

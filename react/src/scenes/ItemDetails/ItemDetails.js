@@ -27,7 +27,7 @@ class ItemDetailsScene extends Component {
                 {loading ? <div>Loading</div> : null}
                 {error ? <div>Error</div> : null}
                 {<NavItem to={'/'}>Home</NavItem>}
-                {item ? <Item item={item.item}/> : 'Nothing to Load'}
+                {item ? <Item item={item}/> : 'Nothing to Load'}
             </div>
         );
     }
