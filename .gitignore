@@ -2,6 +2,7 @@
 .idea
 .idea/*
 */node_modules
+*/react/server/data/favorites/*
 */coverage
 *.log
 candidates

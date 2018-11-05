@@ -18,7 +18,7 @@ const styles = theme => ({
 
 class BrowseGrid extends React.Component {
     render() {
-        const {classes, items} = this.props;
+        const {classes, items, favorites} = this.props;
 
         return (
             <div className={classes.root}>
@@ -27,7 +27,7 @@ class BrowseGrid extends React.Component {
                         return (
                             <Grid key={index} item xs={4}>
                                 <Paper className={classes.paper}>
-                                    <GridItem item={item}/>
+                                    <GridItem item={item} favorites={favorites}/>
                                 </Paper>
                             </Grid>
                         )

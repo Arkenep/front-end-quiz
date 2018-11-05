@@ -10,7 +10,7 @@ const itemLoad = (action$, state$) =>
     action$.ofType(actions.ITEM_LOAD).pipe(
         switchMap(() => {
             return ajax({
-                url: `${URL}${state$.getState().router.location.pathname}`,
+                url: `${URL}${state$.getState().router.location.pathname}/user3`,
                 method: 'GET',
                 contentType: "application/json;charset=utf-8",
             }).pipe(

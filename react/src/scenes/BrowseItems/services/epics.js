@@ -5,7 +5,7 @@ import * as qs from 'qs';
 import * as actions from './actions';
 import {ajax} from 'rxjs/ajax';
 
-const URL = 'http://localhost:3001/browse';
+const URL = 'http://localhost:3001/browse/user3';
 
 const browseItemsLoad = (action$) =>
     action$.ofType(actions.BROWSE_ITEMS_QUERY_CHANGE).pipe(
