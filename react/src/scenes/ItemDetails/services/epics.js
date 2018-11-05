@@ -4,13 +4,13 @@ import {switchMap, map, catchError, takeUntil} from 'rxjs/operators';
 import * as actions from './actions';
 import {ajax} from 'rxjs/ajax';
 
-const URL = 'http://localhost:3001/item/';
+const URL = 'http://localhost:3001';
 
-const itemLoad = (action$) =>
+const itemLoad = (action$, state$) =>
     action$.ofType(actions.ITEM_LOAD).pipe(
-        switchMap((action) => {
+        switchMap(() => {
             return ajax({
-                url: `${URL}${'f_3906702' || action.payload.id}`,
+                url: `${URL}${state$.getState().router.location.pathname}`,
                 method: 'GET',
                 contentType: "application/json;charset=utf-8",
             }).pipe(

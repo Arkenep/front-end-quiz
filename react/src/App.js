@@ -5,7 +5,7 @@ import createHistory from 'history/createBrowserHistory';
 import BrowseItemsScene from './scenes/BrowseItems/BrowseItems'
 import ItemDetailsScene from './scenes/ItemDetails/ItemDetails'
 import {Provider} from "react-redux";
-import {createAppStore} from './services/store';
+import {createAppStore} from './store/store';
 import './App.css';
 
 const history = createHistory();
