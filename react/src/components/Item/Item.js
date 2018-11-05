@@ -38,7 +38,7 @@ class Item extends React.Component {
             <Card className={classes.card}>
                 <CardActions className={classes.actions} disableActionSpacing>
                     <IconButton aria-label="Add to favorites">
-                        <FavoriteIcon/>
+                        <FavoriteIcon color={item.isFavorite ? 'secondary' : 'action'}/>
                     </IconButton>
                 </CardActions>
                 <CardMedia

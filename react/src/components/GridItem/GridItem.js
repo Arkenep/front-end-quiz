@@ -28,8 +28,6 @@ const styles = () => ({
 
 class GridItem extends React.Component {
 
-
-
     render() {
         const {classes, item} = this.props;
         let price = item.price ? item.price.amounts.USD : null;
@@ -43,13 +41,12 @@ class GridItem extends React.Component {
                         title={item.title}
                     />
                 </Link>
-                    <CardActions className={classes.actions} disableActionSpacing>
-                        <Typography component="p">{price}</Typography>
-                        <IconButton aria-label="Add to favorites">
-                            <FavoriteIcon color='action'/>
-                        </IconButton>
-                    </CardActions>
-
+                <CardActions className={classes.actions} disableActionSpacing>
+                    <Typography component="p">{price}</Typography>
+                    <IconButton aria-label="Add to favorites">
+                        <FavoriteIcon color={item.isFavorite ? 'secondary' : 'action'}/>
+                    </IconButton>
+                </CardActions>
             </Card>
         );
     }
