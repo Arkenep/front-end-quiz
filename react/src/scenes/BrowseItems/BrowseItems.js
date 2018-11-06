@@ -9,6 +9,7 @@ import * as actions from './services/actions';
 class BrowseItemsScene extends Component {
 
     componentDidMount() {
+        this.props.onQueryChange(0);
         this.props.onLoad();
     }
 
@@ -32,7 +33,6 @@ class BrowseItemsScene extends Component {
         return (
             <div>
                 <h1>Browse page</h1>
-
                 {loading ? <div>Loading</div> : null}
                 {error ? <div>Error</div> : null}
                 {items ? <BrowseGrid items={items.items}/> : 'Nothing to load'}
@@ -41,7 +41,6 @@ class BrowseItemsScene extends Component {
                         onClick={this.handleChange}>
                     Load More
                 </Button>
-
             </div>
         );
     }

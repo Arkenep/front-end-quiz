@@ -7,7 +7,7 @@ import GridItem from "../GridItem/GridItem";
 
 const styles = theme => ({
     root: {
-        maxWidth: 800,
+        maxWidth: 700,
         flexGrow: 1,
     },
     paper: {
@@ -18,7 +18,7 @@ const styles = theme => ({
 
 class BrowseGrid extends React.Component {
     render() {
-        const {classes, items, favorites} = this.props;
+        const {classes, items} = this.props;
 
         return (
             <div className={classes.root}>
@@ -27,7 +27,7 @@ class BrowseGrid extends React.Component {
                         return (
                             <Grid key={index} item xs={4}>
                                 <Paper className={classes.paper}>
-                                    <GridItem item={item} favorites={favorites}/>
+                                    <GridItem passedItem={item}/>
                                 </Paper>
                             </Grid>
                         )

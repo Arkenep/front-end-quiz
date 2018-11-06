@@ -25,7 +25,7 @@ const itemLoad = (action$, state$) =>
         })
     );
 
-const itemToggleFavorite = (action$, state$) =>
+const itemToggleFavorite = (action$) =>
     action$.ofType(actions.ITEM_TOGGLE_FAVORITE).pipe(
         switchMap((action) => {
             return ajax({

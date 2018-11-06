@@ -15,10 +15,6 @@ class ItemDetailsScene extends Component {
         this.props.onCancel();
     }
 
-    handleItemLoad = () => {
-        this.props.onLoad();
-    };
-
     render() {
         const {item, loading, error} = this.props;
 

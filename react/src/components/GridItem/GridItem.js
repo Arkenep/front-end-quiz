@@ -1,6 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+import connect from "react-redux/es/connect/connect";
 import {withStyles} from '@material-ui/core/styles';
+import {browseItemsLoad, browseItemsLoadCancel} from "../../scenes/BrowseItems/services/actions";
+import * as actions from "../../scenes/ItemDetails/services/actions";
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
@@ -8,7 +11,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import {Link} from 'react-router-dom';
 
 const styles = () => ({
     card: {
@@ -28,8 +30,12 @@ const styles = () => ({
 
 class GridItem extends React.Component {
 
+    toggleFavorite = () => {
+        this.props.itemToggleFavorite(this.props.passedItem.id)
+    };
+
     render() {
-        const {classes, item} = this.props;
+        const {classes, passedItem: item} = this.props;
         let price = item.price ? item.price.amounts.USD : null;
 
         return (
@@ -43,7 +49,7 @@ class GridItem extends React.Component {
                 </Link>
                 <CardActions className={classes.actions} disableActionSpacing>
                     <Typography component="p">{price}</Typography>
-                    <IconButton aria-label="Add to favorites">
+                    <IconButton aria-label="Add to favorites" onClick={this.toggleFavorite}>
                         <FavoriteIcon color={item.isFavorite ? 'secondary' : 'action'}/>
                     </IconButton>
                 </CardActions>
@@ -52,8 +58,20 @@ class GridItem extends React.Component {
     }
 }
 
-GridItem.propTypes = {
-    classes: PropTypes.object.isRequired,
+const mapStateToProps = (state) => {
+    const {classes, item} = state.item;
+    return {
+        classes,
+        item
+    };
 };
 
-export default withStyles(styles)(GridItem);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onLoad: () => dispatch(browseItemsLoad()),
+        onCancel: () => dispatch(browseItemsLoadCancel()),
+        itemToggleFavorite: (isFavorite) => dispatch(actions.itemToggleFavorite(isFavorite))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(GridItem));
