@@ -9,6 +9,21 @@ const defaultState = {
 export const reducer = (state = defaultState, action) => {
     switch(action.type) {
 
+        case actions.ITEM_TOGGLE_FAVORITE: {
+            return {
+                ...state
+            };
+        }
+
+        case actions.ITEM_TOGGLE_FAVORITE_SUCCESS: {
+            return {
+                item: {
+                    ...state.item,
+                    isFavorite: action.payload.favorite.favorite
+                }
+            };
+        }
+
         case actions.ITEM_LOAD: {
             return {
                 ...state,
