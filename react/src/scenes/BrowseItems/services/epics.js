@@ -30,6 +30,26 @@ const browseItemsLoad = (action$) =>
         })
     );
 
+const itemsToggleFavorite = (action$) =>
+    action$.ofType(actions.ITEMS_TOGGLE_FAVORITE).pipe(
+        switchMap((action) => {
+            return ajax({
+                url: `http://localhost:3001/favorites/user3/${action.payload.favoriteId}`,
+                method: 'GET',
+                contentType: "application/json;charset=utf-8",
+            }).pipe(
+                map(({response}) => {
+                    return actions.itemsToggleFavoriteSuccess(response);
+                }),
+                catchError(() => {
+                    return of(actions.itemsToggleFavoriteError('An error!'));
+                }),
+                takeUntil(action$.ofType(actions.itemsToggleFavoriteCancel))
+            );
+        })
+    );
+
 export default combineEpics(
-    browseItemsLoad
+    browseItemsLoad,
+    itemsToggleFavorite
 )

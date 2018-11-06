@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import connect from "react-redux/es/connect/connect";
 import {withStyles} from '@material-ui/core/styles';
 import {browseItemsLoad, browseItemsLoadCancel} from "../../scenes/BrowseItems/services/actions";
-import * as actions from "../../scenes/ItemDetails/services/actions";
+import * as actions from "../../scenes/BrowseItems/services/actions";
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
@@ -31,7 +31,8 @@ const styles = () => ({
 class GridItem extends React.Component {
 
     toggleFavorite = () => {
-        this.props.itemToggleFavorite(this.props.passedItem.id)
+        this.props.itemsToggleFavorite(this.props.passedItem.id);
+        this.props.passedItem.isFavorite = !this.props.passedItem.isFavorite;
     };
 
     render() {
@@ -59,10 +60,10 @@ class GridItem extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    const {classes, item} = state.item;
+    const {classes, items} = state.browseItems;
     return {
         classes,
-        item
+        items
     };
 };
 
@@ -70,7 +71,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onLoad: () => dispatch(browseItemsLoad()),
         onCancel: () => dispatch(browseItemsLoadCancel()),
-        itemToggleFavorite: (isFavorite) => dispatch(actions.itemToggleFavorite(isFavorite))
+        itemsToggleFavorite: (isFavorite) => dispatch(actions.itemsToggleFavorite(isFavorite))
     }
 };
 
